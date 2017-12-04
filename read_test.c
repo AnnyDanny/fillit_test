@@ -62,8 +62,11 @@ int	counttetrims(char *s)
 			{
 				y++;
 				count = 0;
+				i++;
 			}
-			else if ((s[i] != '#' || s[i] != '.') || (s[i] != '\n' && count == 4))
+			if (s[i] == '\0')
+				break ;
+			if ((s[i] != '#' || s[i] != '.') || (s[i] != '\n' && count == 4))
 				return (0);
 			i++;
 			count++;
@@ -72,7 +75,7 @@ int	counttetrims(char *s)
 			return (0);
 		i++;
 	}
-	return (0);
+	return (1);
 }
 // 	{
 // 		if (s[i] == '.' || s[i] == '#')
@@ -124,7 +127,10 @@ int main(int argc, char **argv)
 	}
 	ft_putstr(buf);
 	// printf("%s\n", buf);
-	counttetrims(buf);
+	if (counttetrims(buf) == 1)
+		ft_putstr("ok");
+	else
+		ft_putstr("ko");
 	if (close(fd) == -1)
 		return (1);
 	return (0);
