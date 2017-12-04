@@ -18,12 +18,93 @@
 #include <stdio.h>
 #include "libft.h"
 
-// #define BUF_SIZE 4096
+// int	ft_counts(char *s)
+// {
+// 	int i;
+// 	int qsymb;
+// 	int counttetrims;
+
+// 	i = 0;
+// 	qsymb = 0;
+// 	while (s[i] != '\0')
+// 	{
+// 		if (s[i] == '.' || s[i] == '#' || s[i] == '\n')
+// 			i++;
+// 		qsymb = i;
+// 		i = 0;
+// 		if (s[i] != '\n')
+// 		{
+// 			while (s[i] != '\n' && s[i] != '\0')
+// 				i++;
+// 			counttetrims++;
+// 		}
+// 		else
+// 			return (0);
+// 		return(qsymb);
+// 	}
+// 	return (counttetrims);
+// }
+
+int	counttetrims(char *s)
+{
+	int i;
+	int y;
+	int count;
+
+	i = 0;
+	while (s[i])
+	{
+		y = 0;
+		count = 0;
+		while (s[i] && y < 4)
+		{
+			if (s[i] == '\n' && count == 4)
+			{
+				y++;
+				count = 0;
+			}
+			else if ((s[i] != '#' || s[i] != '.') || (s[i] != '\n' && count == 4))
+				return (0);
+			i++;
+			count++;
+		}
+		if ((s[i] && s[i] != '\n') || (y != 4))
+			return (0);
+		i++;
+	}
+	return (0);
+}
+// 	{
+// 		if (s[i] == '.' || s[i] == '#')
+// 			i++;
+// 		printf("%d\n", i);
+// 		if (s[i] != '.' || s[i] != '#')
+// 		{
+// 			while (s[i] != '\n' && s[i] != '\0')
+// 				i++;
+// 			qtetrim++;
+// 		}
+// 	}
+// 	one = i;
+// 	printf("%d\n", one);
+// 	printf("%d\n", qtetrim);
+// 	return (qtetrim);
+// }
+// 	// if (s[i] != '\n')
+// 	// {
+// 	// 	while (s[i] != '\n' )
+// 	// 		i++;
+// 	// }
+// 	// // if (s[i] == '\0')
+// 	// // 	return (0);
+// 	// if (qsymb == 20)
+// 	// 	return (1);
+// 	// else
+// 	// 	return (0);
 
 int main(int argc, char **argv)
 {
 	int fd;
-	char *ret;
 	char *buf;
 	int tetrims;
 	int count;
@@ -31,8 +112,8 @@ int main(int argc, char **argv)
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		return (1);
-	buf = ft_strnew(600);
-	while (read(fd, buf, 599))
+	buf = ft_strnew(545);
+	while (read(fd, buf, 544))
 	{
 		tetrims++;
 	}
@@ -41,32 +122,10 @@ int main(int argc, char **argv)
 		ft_putstr("error\n");
 		return (0);
 	}
-	// buf[ret] = '\0';
 	ft_putstr(buf);
+	// printf("%s\n", buf);
+	counttetrims(buf);
 	if (close(fd) == -1)
 		return (1);
 	return (0);
 }
-
-
-// int main()
-// {
-// 	void *buf;
-// 	int handle;
-// 	int bytes;
-
-// 	buf = malloc(10);
-// 	if ((handle = open("test.c", O_RDONLY)) == -1)
-// 	{
-// 		printf("wrong with open file.\n");
-// 		return (1);
-// 	}
-// 	if ((bytes = read(handle, buf, 10)) == -1)
-// 	{
-// 		printf("wrong with read.\n");
-// 		return (1);
-// 	}
-// 	else
-// 		printf("read %d bytes.\n", bytes );
-// 	return (0);
-// }
