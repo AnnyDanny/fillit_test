@@ -17,6 +17,34 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "libft.h"
+#include "fillit.h"
+
+void	read_in_list(char *buf)
+{
+	t_list *list;
+	t_list *list_start;
+	int i;
+	char *input;
+
+	list = 0;
+	if (read_file(int fd))
+	{
+		while(buf)
+			list_push_back(list, buf)
+	}
+	input = ft_memalloc(list_size(list + 1))
+	i = 0;
+	list_start = list;
+	while (list)
+	{
+		input[i++] = list->next;
+		// input[i++] = list->data;
+		list = lest->next;
+
+	}
+	input[i] = '\0';
+	buf = input;
+}
 
 int		check_one(char *s, int *i)
 {
@@ -86,7 +114,10 @@ int		read_file(int fd)
 	}
 	ft_putstr(buf);
 	if (ft_check(buf) == 1)
+	{
+		// check_figures(buf);
 		ft_putstr("ok\n");
+	}
 	else
 		ft_putstr("ko\n");
 	if ((ft_check) == 0)
