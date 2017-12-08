@@ -19,32 +19,94 @@
 #include "libft.h"
 #include "fillit.h"
 
-void	read_in_list(char *buf)
+char	***block_memory()
 {
-	t_list *list;
-	t_list *list_start;
 	int i;
-	char *input;
+	int j;
+	char ***all_blocks;
+	char *data;
+	char *ptr;
 
-	list = 0;
-	if (read_file(int fd))
-	{
-		while(buf)
-			list_push_back(list, buf)
-	}
-	input = ft_memalloc(list_size(list + 1))
 	i = 0;
-	list_start = list;
-	while (list)
+	j = 0;
+	all_blocks = (char ***)malloc(sizeof(char **) * 26 + 
+		sizeof(char *) * 26 * 4 + 
+		sizeof(char) * 26 * 4 * 5);
+	ptr = (char **)(all_blocks + 26);
+	data = (char *)(all_blocks + 26 + 26 * 4);
+	while (i < 26)
 	{
-		input[i++] = list->next;
-		// input[i++] = list->data;
-		list = lest->next;
-
+		all_blocks[i] = ptr + i * 4;
+		j = 0;
+		while (j < 4)
+		{
+			all_blocks[i][j] = data + i * 4 * 5 + j * 5;
+			all_blocks[i][j][4] = 0;
+			j++;
+		}
+		i++;
 	}
-	input[i] = '\0';
-	buf = input;
+	return (all_blocks);
 }
+
+char	***in_arr(char *s)
+{
+	char ***m;
+	int i;
+	int numbofblocks;
+	int countstr;
+	int countsymbofstr;
+
+	i = 0;
+	numbofblocks = 0;
+	char ***block_memory(m);
+	while (s[i])
+	{
+		countstr = 0;
+		while (countstr < 4)
+		{
+			countsymbofstr = 0;
+			while (countsymbofstr < 4)
+			{
+				m[numbofblocks][countstr][countsymbofstr] = s[i];
+				countsymbofstr++:
+				i++;
+			}
+			countstr++;
+			i++;
+		}
+		numbofblocks++;
+		i++:
+	}
+	return (**m);
+}
+
+// void	add_list(char *buf)
+// {
+// 	t_list *list;
+// 	t_list *list_start;
+// 	int i;
+// 	char *input;
+
+// 	list = 0;
+// 	if (read_file(int fd))
+// 	{
+// 		while(buf)
+// 			list_push_back(list, buf)
+// 	}
+// 	input = ft_memalloc(list_size(list + 1))
+// 	i = 0;
+// 	list_start = list;
+// 	while (list)
+// 	{
+// 		input[i++] = list->next;
+// 		// input[i++] = list->data;
+// 		list = lest->next;
+
+// 	}
+// 	input[i] = '\0';
+// 	buf = input;
+// }
 
 int		check_one(char *s, int *i)
 {

@@ -15,8 +15,9 @@
 
 typedef	struct s_list
 {
+	void			*content;
+	size_t			content_size;
 	struct s_list	*next;
-	char			data;
 }					t_list;
 
 int		read_file(int fd);
