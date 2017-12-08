@@ -13,12 +13,18 @@
 #ifndef FILLIT_H
 # define FILLIT_H
 
-typedef	struct s_list
+// typedef	struct s_list
+// {
+// 	void			*content;
+// 	size_t			content_size;
+// 	struct s_list	*next;
+// }					t_list;
+
+typedef struct	s_coordinate
 {
-	void			*content;
-	size_t			content_size;
-	struct s_list	*next;
-}					t_list;
+	int x;
+	int y;
+}				t_coordinate;
 
 int		read_file(int fd);
 int		check_figures(char *s);

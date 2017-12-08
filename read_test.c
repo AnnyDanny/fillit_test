@@ -81,32 +81,6 @@ char	***in_arr(char *s)
 	return (**m);
 }
 
-// void	add_list(char *buf)
-// {
-// 	t_list *list;
-// 	t_list *list_start;
-// 	int i;
-// 	char *input;
-
-// 	list = 0;
-// 	if (read_file(int fd))
-// 	{
-// 		while(buf)
-// 			list_push_back(list, buf)
-// 	}
-// 	input = ft_memalloc(list_size(list + 1))
-// 	i = 0;
-// 	list_start = list;
-// 	while (list)
-// 	{
-// 		input[i++] = list->next;
-// 		// input[i++] = list->data;
-// 		list = lest->next;
-
-// 	}
-// 	input[i] = '\0';
-// 	buf = input;
-// }
 
 int		check_one(char *s, int *i)
 {
@@ -157,10 +131,10 @@ int		ft_check(char *s)
 	}
 	if (check == 0)
 		return (0);
-	return (1);
+	return (check_figures(s));
 }
 
-int		read_file(int fd)
+char	*read_file(int fd)
 {
 	char	*buf;
 	int		tetrims;
@@ -184,18 +158,21 @@ int		read_file(int fd)
 		ft_putstr("ko\n");
 	if ((ft_check) == 0)
 		return (0);
-	return (1);
+	return (buf);
 }
 
 int		main(int argc, char **argv)
 {
 	int		fd;
+	t_list	*vika;
+	char	*buf;
 
 	(void)argc;
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		return (1);
-	read_file(fd);
+	buf = read_file(fd);
+	vika = coordinate(buf);
 	if (close(fd) == -1)
 		return (1);
 	return (0);

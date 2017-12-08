@@ -19,26 +19,6 @@
 #include "libft.h"
 #include "fillit.h"
 
-int	check_elser(char *s)
-{
-	int i;
-	int symb;
-
-	i = 0;
-	symb = 0;
-	while (symb < 21)
-	{
-		if (s[i] == '#')
-		{
-			ft_putstr("error");
-			return (0);
-		}
-		symb++;
-		i++;
-	}
-	return (1);
-}
-
 int	check_figures(char *s)
 {
 	int i;
@@ -49,44 +29,29 @@ int	check_figures(char *s)
 	while (s[i])
 	{
 		symbofblock = 0;
-		while (symbofblock < 21)
+		ir = 0;
+		while (s[i] && symbofblock < 20)
 		{
 			if (s[i] == '#')
 			{
-				s[i] = '*';
-				ir = 1;
-				while (ir > 0)
-				{
-					ir = 0;
-					if (s[i + 1] == '#')
-					{
-						s[i + 1] = '*';
-						ir++;
-					}
-					if (i > 0 && s[i - 1] == '#')
-					{
-						s[i - 1] = '*';
-						ir++;
-					}
-					if (i >= 5 && s[i - 5] == '#')
-					{
-						s[i - 5] = '*';
-						ir++;
-					}
-					if (i <= 16 && s[i + 5] == '#')
-					{
-						s[i + 5] = '*';
-						ir++;
-					}
-				}
+				if (s[i + 1] == '#')
+					ir++;
+				if (symbofblock > 0 && s[i - 1] == '#')
+					ir++;
+				if (symbofblock >= 5 && s[i - 5] == '#')
+					ir++;
+				if (symbofblock <= 16 && s[i + 5] == '#')
+					ir++;
 			}
 			symbofblock++;
 			i++;
 		}
-		i++;
+		if (!(ir == 6 || ir == 8))
+		{
+			printf("%d\n %d\n", i, ir);
+			return (0);
+		}
+		(s[i]) ? i++ : i;
 	}
-	if (check_elser(s) == 0)
-		return (0);
-	else
-		return (1);
+	return (1);
 }

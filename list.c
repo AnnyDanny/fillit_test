@@ -73,3 +73,30 @@ void list_clear(t_list *begin_list)
 	}
 	begin_list = NULL;
 }
+
+// void	add_list(char *buf)
+// {
+// 	t_list *list;
+// 	t_list *list_start;
+// 	int i;
+// 	char *input;
+
+// 	list = 0;
+// 	if (read_file(int fd))
+// 	{
+// 		while(buf)
+// 			list_push_back(list, buf)
+// 	}
+// 	input = ft_memalloc(list_size(list + 1))
+// 	i = 0;
+// 	list_start = list;
+// 	while (list)
+// 	{
+// 		input[i++] = list->next;
+// 		// input[i++] = list->data;
+// 		list = lest->next;
+
+// 	}
+// 	input[i] = '\0';
+// 	buf = input;
+// }
