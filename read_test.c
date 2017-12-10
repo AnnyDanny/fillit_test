@@ -89,32 +89,33 @@ char	*read_file(int fd)
 	// ft_putstr(buf);
 	if (ft_check(buf) == 1)
 	{
-		check_figures(buf);
-		ft_putstr(buf);
+		if (check_figures(buf) == 1)
+			return (buf);
 	}
 	else
-		ft_putstr("error");
-	if ((ft_check) == 0)
+	{
+		ft_putstr("error\n");
 		return (0);
+	}
 	return (buf);
 }
 
-void	printvika(t_list *vika)
-{
-	int i;
+// void	printvika(t_list *vika)
+// {
+// 	int i;
 
-	while (vika)
-	{
-		i = 0;
-		while (i < 4)
-		{
-			printf("contentx %d\n", ((t_coordinate *)(vika->content))[i].x);
-			printf("contenty %d\n\n", ((t_coordinate *)(vika->content))[i].y);
-			i++;
-		}
-		vika = vika->next;
-	}
-}
+// 	while (vika)
+// 	{
+// 		i = 0;
+// 		while (i < 4)
+// 		{
+// 			printf("contentx %d\n", ((t_coordinate *)(vika->content))[i].x);
+// 			printf("contenty %d\n\n", ((t_coordinate *)(vika->content))[i].y);
+// 			i++;
+// 		}
+// 		vika = vika->next;
+// 	}
+// }
 
 int		main(int argc, char **argv)
 {
@@ -128,8 +129,8 @@ int		main(int argc, char **argv)
 		return (1);
 	buf = read_file(fd);
 	vika = coordinate(buf);
-	printvika(vika);
-	printf("content_size %zu\n", vika->content_size);
+	// printvika(vika);
+	// printf("content_size %zu\n", vika->content_size);
 	if (close(fd) == -1)
 		return (1);
 	return (0);

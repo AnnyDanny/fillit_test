@@ -77,7 +77,7 @@ void	save_coordinateone(char *s, t_list **list, int *i)
 		if (s[*i] == '#')
 		{
 			c[arr].x = countx;
-			printf("countx %d\n county %d\n\n", countx, county);
+			// printf("countx %d\n county %d\n\n", countx, county);
 			c[arr].y = county;
 			arr++;
 		}
@@ -91,13 +91,12 @@ void	save_coordinateone(char *s, t_list **list, int *i)
 
 t_list	*coordinate(char *s)
 {
+	char **map;
 	int		i;
-	int		check;
 	t_list	*list;
 	int blocks;
 
 	i = 0;
-	check = 0;
 	list = NULL;
 	blocks = 0;
 	while (s[i])
@@ -107,6 +106,8 @@ t_list	*coordinate(char *s)
 		(s[i]) ? i++ : i;
 	}
 	create_field(blocks);
-	printf("blocks %d\n\n", blocks);
+	map = create_field(blocks);
+	add_elem_in_field(map, list);
+	// printf("blocks %d\n\n", blocks);
 	return (list);
 }

@@ -255,6 +255,33 @@ char	**create_field(int blocks)
 
 }
 
+char	**add_elem_in_field(char **field, t_list *oneelem)
+{
+	int i;
+	int x;
+	int y;
+
+	// while (field)
+	// {
+		i = 0;
+		while (i < 4)
+		{
+			x = ((t_coordinate *)(oneelem->content))[i].x;
+			y = ((t_coordinate *)(oneelem->content))[i].y;
+			// printf("printx %d\n printy %d\n", x, y);
+			field[y][x] = 'A';
+			i++;
+		}
+		// printf("ffgjgjkh\n");
+	// }
+	// while (i--)
+		
+		printf("%s\n", field[0]);
+		printf("%s\n", field[1]);
+		printf("%s\n", field[2]);
+	return (field);
+}
+
 int	check_figures(char *s)
 {
 	int i;
@@ -315,3 +342,92 @@ char	**create_field(int blocks);
 
 
 #endif
+
+
+save_coordinateonet_list	*coordinate(char *s)
+{
+	char **map;
+	int		i;
+	t_list	*list;
+	int blocks;
+
+	i = 0;
+	list = NULL;
+	blocks = 0;
+	while (s[i])
+	{
+		save_coordinateone(s, &list, &i);
+		blocks++;
+		(s[i]) ? i++ : i;
+	}
+	create_field(blocks);
+	map = create_field(blocks);
+	add_elem_in_field(map, list);
+	// printf("blocks %d\n\n", blocks);
+	return (list);
+}
+
+
+char	*read_file(int fd)
+{
+	char	*buf;
+	int		tetrims;
+
+	tetrims = 0;
+	buf = ft_strnew(545);
+	while (read(fd, buf, 544))
+		tetrims++;
+	if (tetrims != 1)
+	{
+		ft_putstr("error\n");
+		return (0);
+	}
+	// ft_putstr(buf);
+	if (ft_check(buf) == 1)
+	{
+		if (check_figures(buf) == 1)
+			return (buf);
+	}
+	else
+	{
+		ft_putstr("error\n");
+		return (0);
+	}
+	return (buf);
+}
+
+// void	printvika(t_list *vika)
+// {
+// 	int i;
+
+// 	while (vika)
+// 	{
+// 		i = 0;
+// 		while (i < 4)
+// 		{
+// 			printf("contentx %d\n", ((t_coordinate *)(vika->content))[i].x);
+// 			printf("contenty %d\n\n", ((t_coordinate *)(vika->content))[i].y);
+// 			i++;
+// 		}
+// 		vika = vika->next;
+// 	}
+// }
+
+int		main(int argc, char **argv)
+{
+	int		fd;
+	t_list	*vika;
+	char	*buf;
+
+	(void)argc;
+	fd = open(argv[1], O_RDONLY);
+	if (fd == -1)
+		return (1);
+	buf = read_file(fd);
+	vika = coordinate(buf);
+	// printvika(vika);
+	// printf("content_size %zu\n", vika->content_size);
+	if (close(fd) == -1)
+		return (1);
+	return (0);
+}
