@@ -94,14 +94,19 @@ t_list	*coordinate(char *s)
 	int		i;
 	int		check;
 	t_list	*list;
+	int blocks;
 
 	i = 0;
 	check = 0;
 	list = NULL;
+	blocks = 0;
 	while (s[i])
 	{
 		save_coordinateone(s, &list, &i);
+		blocks++;
 		(s[i]) ? i++ : i;
 	}
+	create_field(blocks);
+	printf("blocks %d\n\n", blocks);
 	return (list);
 }

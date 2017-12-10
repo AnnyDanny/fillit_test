@@ -19,68 +19,6 @@
 #include "libft.h"
 #include "fillit.h"
 
-// char	***block_memory()
-// {
-// 	int i;
-// 	int j;
-// 	char ***all_blocks;
-// 	char *data;
-// 	char *ptr;
-
-// 	i = 0;
-// 	j = 0;
-// 	all_blocks = (char ***)malloc(sizeof(char **) * 26 + 
-// 		sizeof(char *) * 26 * 4 + 
-// 		sizeof(char) * 26 * 4 * 5);
-// 	ptr = (char **)(all_blocks + 26);
-// 	data = (char *)(all_blocks + 26 + 26 * 4);
-// 	while (i < 26)
-// 	{
-// 		all_blocks[i] = ptr + i * 4;
-// 		j = 0;
-// 		while (j < 4)
-// 		{
-// 			all_blocks[i][j] = data + i * 4 * 5 + j * 5;
-// 			all_blocks[i][j][4] = 0;
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// 	return (all_blocks);
-// }
-
-// char	***in_arr(char *s)
-// {
-// 	char ***m;
-// 	int i;
-// 	int numbofblocks;
-// 	int countstr;
-// 	int countsymbofstr;
-
-// 	i = 0;
-// 	numbofblocks = 0;
-// 	char ***block_memory(m);
-// 	while (s[i])
-// 	{
-// 		countstr = 0;
-// 		while (countstr < 4)
-// 		{
-// 			countsymbofstr = 0;
-// 			while (countsymbofstr < 4)
-// 			{
-// 				m[numbofblocks][countstr][countsymbofstr] = s[i];
-// 				countsymbofstr++:
-// 				i++;
-// 			}
-// 			countstr++;
-// 			i++;
-// 		}
-// 		numbofblocks++;
-// 		i++:
-// 	}
-// 	return (**m);
-// }
-
 
 int		check_one(char *s, int *i)
 {

@@ -1,35 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   ft_sqrt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdanylov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/07 14:59:31 by gdanylov          #+#    #+#             */
-/*   Updated: 2017/12/07 14:59:31 by gdanylov         ###   ########.fr       */
+/*   Created: 2017/11/27 14:07:27 by gdanylov          #+#    #+#             */
+/*   Updated: 2017/11/27 14:07:27 by gdanylov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+#include "libft.h"
 
-// typedef	struct s_list
-// {
-// 	void			*content;
-// 	size_t			content_size;
-// 	struct s_list	*next;
-// }					t_list;
-
-typedef struct	s_coordinate
+int	ft_sqrt(int nb)
 {
-	int x;
-	int y;
-}				t_coordinate;
+	int i;
 
-char	*read_file(int fd);
-int		check_figures(char *s);
-t_list	*coordinate(char *s);
-char	**create_field(int blocks);
-
-
-#endif
+	if (nb <= 0)
+		return (0);	
+	while (nb)
+	{
+		i = 1;
+		while (i <= nb / 2)
+		{
+			if (i * i == nb)
+				return (i);
+			i++;
+		}
+		nb++;
+	}
+	return (0);
+}
