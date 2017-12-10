@@ -14,6 +14,32 @@
 #include "libft.h"
 #include "fillit.h"
 
+void	coordinatemin(t_coordinate c[4])
+{
+	int minx;
+	int miny;
+	int i;
+
+	i = 0;
+	minx = 3;
+	miny = 3;
+	while (i < 4)
+	{
+		if (c[i].x < minx)
+			minx = c[i].x;
+		if (c[i].y < miny)
+			miny = c[i].y;
+		i++;
+	}
+	i = 0;
+	while (i < 4)
+	{
+		c[i].x = c[i].x - minx;
+		c[i].y = c[i].y - miny;
+		i++;
+	}
+}
+
 void	list_push_back(t_list **begin_list, t_list *new)
 {
 	t_list *list;
@@ -51,12 +77,14 @@ void	save_coordinateone(char *s, t_list **list, int *i)
 		if (s[*i] == '#')
 		{
 			c[arr].x = countx;
+			printf("countx %d\n county %d\n\n", countx, county);
 			c[arr].y = county;
 			arr++;
 		}
 		(s[*i] != '\0' && county != 4) ? *i += 1 : *i;
 		countx++;
 	}
+	coordinatemin(c);
 	oneelem = ft_lstnew(c, sizeof(t_coordinate) * 4);
 	list_push_back(&(*list), oneelem);
 }

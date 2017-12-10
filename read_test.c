@@ -19,67 +19,67 @@
 #include "libft.h"
 #include "fillit.h"
 
-char	***block_memory()
-{
-	int i;
-	int j;
-	char ***all_blocks;
-	char *data;
-	char *ptr;
+// char	***block_memory()
+// {
+// 	int i;
+// 	int j;
+// 	char ***all_blocks;
+// 	char *data;
+// 	char *ptr;
 
-	i = 0;
-	j = 0;
-	all_blocks = (char ***)malloc(sizeof(char **) * 26 + 
-		sizeof(char *) * 26 * 4 + 
-		sizeof(char) * 26 * 4 * 5);
-	ptr = (char **)(all_blocks + 26);
-	data = (char *)(all_blocks + 26 + 26 * 4);
-	while (i < 26)
-	{
-		all_blocks[i] = ptr + i * 4;
-		j = 0;
-		while (j < 4)
-		{
-			all_blocks[i][j] = data + i * 4 * 5 + j * 5;
-			all_blocks[i][j][4] = 0;
-			j++;
-		}
-		i++;
-	}
-	return (all_blocks);
-}
+// 	i = 0;
+// 	j = 0;
+// 	all_blocks = (char ***)malloc(sizeof(char **) * 26 + 
+// 		sizeof(char *) * 26 * 4 + 
+// 		sizeof(char) * 26 * 4 * 5);
+// 	ptr = (char **)(all_blocks + 26);
+// 	data = (char *)(all_blocks + 26 + 26 * 4);
+// 	while (i < 26)
+// 	{
+// 		all_blocks[i] = ptr + i * 4;
+// 		j = 0;
+// 		while (j < 4)
+// 		{
+// 			all_blocks[i][j] = data + i * 4 * 5 + j * 5;
+// 			all_blocks[i][j][4] = 0;
+// 			j++;
+// 		}
+// 		i++;
+// 	}
+// 	return (all_blocks);
+// }
 
-char	***in_arr(char *s)
-{
-	char ***m;
-	int i;
-	int numbofblocks;
-	int countstr;
-	int countsymbofstr;
+// char	***in_arr(char *s)
+// {
+// 	char ***m;
+// 	int i;
+// 	int numbofblocks;
+// 	int countstr;
+// 	int countsymbofstr;
 
-	i = 0;
-	numbofblocks = 0;
-	char ***block_memory(m);
-	while (s[i])
-	{
-		countstr = 0;
-		while (countstr < 4)
-		{
-			countsymbofstr = 0;
-			while (countsymbofstr < 4)
-			{
-				m[numbofblocks][countstr][countsymbofstr] = s[i];
-				countsymbofstr++:
-				i++;
-			}
-			countstr++;
-			i++;
-		}
-		numbofblocks++;
-		i++:
-	}
-	return (**m);
-}
+// 	i = 0;
+// 	numbofblocks = 0;
+// 	char ***block_memory(m);
+// 	while (s[i])
+// 	{
+// 		countstr = 0;
+// 		while (countstr < 4)
+// 		{
+// 			countsymbofstr = 0;
+// 			while (countsymbofstr < 4)
+// 			{
+// 				m[numbofblocks][countstr][countsymbofstr] = s[i];
+// 				countsymbofstr++:
+// 				i++;
+// 			}
+// 			countstr++;
+// 			i++;
+// 		}
+// 		numbofblocks++;
+// 		i++:
+// 	}
+// 	return (**m);
+// }
 
 
 int		check_one(char *s, int *i)
@@ -148,17 +148,34 @@ char	*read_file(int fd)
 		ft_putstr("error\n");
 		return (0);
 	}
-	ft_putstr(buf);
+	// ft_putstr(buf);
 	if (ft_check(buf) == 1)
 	{
-		// check_figures(buf);
-		ft_putstr("ok\n");
+		check_figures(buf);
+		ft_putstr(buf);
 	}
 	else
-		ft_putstr("ko\n");
+		ft_putstr("error");
 	if ((ft_check) == 0)
 		return (0);
 	return (buf);
+}
+
+void	printvika(t_list *vika)
+{
+	int i;
+
+	while (vika)
+	{
+		i = 0;
+		while (i < 4)
+		{
+			printf("contentx %d\n", ((t_coordinate *)(vika->content))[i].x);
+			printf("contenty %d\n\n", ((t_coordinate *)(vika->content))[i].y);
+			i++;
+		}
+		vika = vika->next;
+	}
 }
 
 int		main(int argc, char **argv)
@@ -173,6 +190,8 @@ int		main(int argc, char **argv)
 		return (1);
 	buf = read_file(fd);
 	vika = coordinate(buf);
+	printvika(vika);
+	printf("content_size %zu\n", vika->content_size);
 	if (close(fd) == -1)
 		return (1);
 	return (0);

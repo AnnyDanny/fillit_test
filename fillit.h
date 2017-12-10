@@ -26,8 +26,9 @@ typedef struct	s_coordinate
 	int y;
 }				t_coordinate;
 
-int		read_file(int fd);
+char	*read_file(int fd);
 int		check_figures(char *s);
+t_list	*coordinate(char *s);
 
 
 #endif
