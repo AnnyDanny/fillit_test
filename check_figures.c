@@ -40,7 +40,7 @@ int	check_figures(char *s)
 					ir++;
 				if (symbofblock >= 5 && s[i - 5] == '#')
 					ir++;
-				if (symbofblock <= 16 && s[i + 5] == '#')
+				if (symbofblock <= 15 && s[i + 5] == '#')
 					ir++;
 			}
 			symbofblock++;

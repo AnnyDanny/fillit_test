@@ -122,13 +122,18 @@ int		main(int argc, char **argv)
 	int		fd;
 	t_list	*vika;
 	char	*buf;
+	int		blocks;
+	char **map;
+	int		num;
 
 	(void)argc;
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		return (1);
 	buf = read_file(fd);
-	vika = coordinate(buf);
+	vika = coordinate(buf, &blocks);
+	map = create_field((num = count_blocks(blocks)));
+	add_elem_in_field(map, vika, num);
 	// printvika(vika);
 	// printf("content_size %zu\n", vika->content_size);
 	if (close(fd) == -1)

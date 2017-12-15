@@ -55,7 +55,7 @@ void	list_push_back(t_list **begin_list, t_list *new)
 	list->next = new;
 }
 
-void	save_coordinateone(char *s, t_list **list, int *i)
+void	save_coordinateone(char *s, t_list **list, int *i, int blocks)
 {
 	int		countx;
 	int		county;
@@ -86,28 +86,28 @@ void	save_coordinateone(char *s, t_list **list, int *i)
 	}
 	coordinatemin(c);
 	oneelem = ft_lstnew(c, sizeof(t_coordinate) * 4);
+	oneelem->content_size = blocks;
 	list_push_back(&(*list), oneelem);
 }
 
-t_list	*coordinate(char *s)
+t_list	*coordinate(char *s, int *blocks)
 {
-	char **map;
+	// char **map;
 	int		i;
 	t_list	*list;
-	int blocks;
 
 	i = 0;
 	list = NULL;
-	blocks = 0;
+	*blocks = 0;
 	while (s[i])
 	{
-		save_coordinateone(s, &list, &i);
-		blocks++;
+		save_coordinateone(s, &list, &i, *blocks);
+		(*blocks)++;
 		(s[i]) ? i++ : i;
 	}
-	create_field(blocks);
-	map = create_field(blocks);
-	add_elem_in_field(map, list);
+	// create_field(blocks);
+	// map = create_field(blocks);
+	// add_elem_in_field(map, list);
 	// printf("blocks %d\n\n", blocks);
 	return (list);
 }

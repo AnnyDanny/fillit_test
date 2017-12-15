@@ -28,9 +28,10 @@ typedef struct	s_coordinate
 
 char	*read_file(int fd);
 int		check_figures(char *s);
-t_list	*coordinate(char *s);
+t_list	*coordinate(char *s, int *blocks);
 char	**create_field(int blocks);
-char	**add_elem_in_field(char **field, t_list *oneelem);
+char	**add_elem_in_field(char **field, t_list *oneelem, int num);
+int		count_blocks(int blocks);
 
 
 #endif
